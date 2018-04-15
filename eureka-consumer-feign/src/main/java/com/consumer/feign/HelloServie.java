@@ -1,11 +1,9 @@
 package com.consumer.feign;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Author:xuecx
@@ -13,8 +11,8 @@ import org.springframework.web.client.RestTemplate;
  * @QQ:1276162287
  * @Discription:
  */
-@FeignClient(value = "service-hi")
+@FeignClient(value = "service-hi",fallback = HelloServiceHystrix.class)
 public interface HelloServie {
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
-    String hi(String name);
+    String hi(@RequestParam(value = "name") String name);
 }

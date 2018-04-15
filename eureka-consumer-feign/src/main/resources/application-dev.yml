@@ -7,7 +7,11 @@ server:
   port: 8765
 spring:
   application:
-    name: service-ribbon
+    name: service-feign
+#打开熔断器
+feign:
+  hystrix:
+    enabled: true
 #
 #server:
 #  port: 8082
